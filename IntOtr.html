@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контейнеры: верхний и два нижних</title>
+    <link rel="stylesheet" href="static/styles/stINT.css">
+</head>
+
+<body>
+    <div class="meny">
+        <a href="index.html">
+            <h2>← Главное меню</h2>
+        </a>
+    </div>
+
+    <h1>Отражение и преломление</h1>
+
+    <div class="container-wrapper">
+        <div class="top-container">
+            <h2>Интерактив</h2>
+            <div class="sim-layout">
+                <div class="sim-main">
+                    <div class="simulation-container">
+                        <canvas id="refraction-canvas" width="800" height="300"></canvas>
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label>Угол падения α (°):</label>
+                                <input type="range" id="incident-angle" min="0" max="90" value="45" step="1">
+                                <span id="incident-angle-val">45</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Среда 1:</label>
+                                <select id="medium1">
+                                    <option value="1.00">Воздух (n = 1.00)</option>
+                                    <option value="1.33">Вода (n = 1.33)</option>
+                                    <option value="1.50">Стекло (n = 1.50)</option>
+                                    <option value="2.42">Алмаз (n = 2.42)</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label>Среда 2:</label>
+                                <select id="medium2">
+                                    <option value="1.00">Воздух (n = 1.00)</option>
+                                    <option value="1.33">Вода (n = 1.33)</option>
+                                    <option value="1.50" selected>Стекло (n = 1.50)</option>
+                                    <option value="2.42">Алмаз (n = 2.42)</option>
+                                </select>
+                            </div>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="show-normal" checked>
+                                    Показать нормаль
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="show-angles" checked>
+                                    Показать углы
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="refraction-results" id="refraction-results">
+                        <h4>Результаты:</h4>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Угол падения α:</span>
+                                <span class="result-value" id="angle-incident">45°</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Угол отражения β:</span>
+                                <span class="result-value" id="angle-reflection">45°</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Угол преломления γ:</span>
+                                <span class="result-value" id="angle-refraction">—</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Относительный показатель n:</span>
+                                <span class="result-value" id="relative-n">—</span>
+                            </div>
+                        </div>
+                        <div class="total-reflection-warning" id="total-reflection" style="display: none;">
+                            ⚠️ Полное внутреннее отражение!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-row">
+            <div class="bottom-container left-container">
+                <h3>Теория</h3>
+                <div class="teoryContainer">
+                    <p>Закон отражения света: луч падающий и отражённый лежат в одной плоскости с перпендикуляром,
+                        проведённым к границе раздела двух сред в точке падения луча. Угол падения a равен углу
+                        отражения b.
+                    </p>
+                    <p>Оптическая плотность среды характеризуется различной скоростью распространения света. </p>
+                    <p>Среда, в которой скорость распространения света меньше, является оптически более плотной средой.
+                    </p>
+                    <p>При переходе из одной среды в другую луч света изменяет направление на границе сред. Это явление
+                        называют преломлением света. </p>
+                    <p>Закон преломления света: лучи падающий, преломлённый и перпендикуляр, проведённый к границе
+                        раздела
+                        двух сред в точке падения луча, лежат в одной плоскости. Отношение синуса угла падения к синусу
+                        угла
+                        преломления есть величина постоянная для двух сред.</p>
+                </div>
+            </div>
+            <div class="bottom-container right-container">
+                <h3>Задачи из открытого банка ФИПИ</h3>
+                <div id="taskContainer">
+
+                    <script>
+                        const tasks = [
+                            { q: "Установите соответствие между физическими понятиями и их примерами. К каждой позиции первого столбца подберите соответствующую позицию из второго столбца и запишите в таблицу выбранные цифры под соответствующими буквами.", a: "235", img: 'static/images/задача1otr.PNG' },
+                            { q: "Установите соответствие между техническими устройствами и физическими явлениями, лежащими в основе их работы.<span style='display:block'>К каждой позиции первого столбца подберите соответствующую позициюиз второго столбца и запишите в таблицу выбранные цифры под соответствующими буквами.</span>", a: "21", img: 'static/images/задача2otr.PNG' },
+                            { q: "На границе воздух-стекло световой луч частично отражается, частично преломляется (см. рисунок).<span style='display:block'>Угол преломления равен примерно</span><span style='display:block'>1) 80°</span><span style='display:block'>2) 70°</span><span style='display:block'>3) 30°</span><span style='display:block'>4) 20°</span>", a: "4", img: 'https://fs.znanio.ru/8c0997/88/70/05d042f5f3b6c3fa9989f412198973d0aa.png' },
+                            { q: "Луч света переходит из стекла в воздух, преломляясь на границе раздела двух сред. Какое из направлений 1–4 соответствует преломлённому лучу?", a: "4", img: 'https://easy-exam.ru/static/main_page/image/tasks/1161.png' },
+                            { q: "На границе воздух-стекло световой луч частично отражается, частично преломляется (см. рисунок).<span style='display:block'>Угол преломления равен примерно</span><span style='display:block'>1) 10°</span><span style='display:block'>2) 15°</span><span style='display:block'>3) 75°</span><span style='display:block'>4) 30°</span>", a: "2", img: 'https://easy-exam.ru/static/main_page/image/tasks/1239.jpg' },
+                            { q: "Любителям порыбачить с помощью копья (остроги) важно учитывать, что видимое положение рыбы не соответствует её реальному положению. Какое физическое явление объясняет наблюдаемое смещение положения тела под водой?<span style='display:block'>1) преломление света</span><span style='display:block'>2) рассеяние света</span><span style='display:block'>3) дисперсия света</span><span style='display:block'>4) поглощение света</span>", a: "1" },
+                            { q: "Луч света переходит из воздуха в стекло, преломляясь на границе раздела двух сред. Какое из направлений 1–4 соответствует преломлённому лучу?", a: "3", img: 'static/images/задача7otr.jpg' },
+                            { q: "На рисунке представлен ход светового луча через четыре прозрачные пластинки 1–4, сложенные стопкой.В какой пластинке свет имеет наибольшую скорость распространения? ", a: "1", img: 'https://easy-exam.ru/static/main_page/image/tasks/1174.png' },
+                            { q: "Луч света, распространяясь в воздухе, падает на плоскопараллельную стеклянную пластину. Какое из построений 1–4 соответствует ходу светового луча через пластину?", a: "2", img: 'https://i.cdn01.ru/files/users/images/dd/c2/ddc27c4bbe5e554bbc48dc51bb9d844f.png' },
+                            { q: "Какое физическое явление проявляется в природе, когда на берегу мы наблюдаем в спокойной глади воды в точности отражённые береговые пейзажи?<span style='display:block'>1) зеркальное отражение света</span><span style='display:block'>2) рассеянное отражение света</span><span style='display:block'>3) дисперсия света</span><span style='display:block'>4) поглощение света</span>", a: "1" },
+                            { q: "Высота Солнца над горизонтом (см. рисунок) равна 55°. Луч падает на плоское зеркало, лежащее на горизонтальной поверхности. Чему равен угол отражения луча от зеркала?", a: "35", img: 'https://easy-exam.ru/static/main_page/image/tasks/1165.png' },
+                            { q: "Луч света падает на плоское зеркало. Угол между падающим и отражённым лучами равен 150°. Чему равен угол между отражённым лучом и зеркалом? ", a: "15" },
+                            { q: "Луч света, распространяясь в воздухе, падает на стеклянную пластину и преломляется на границе воздух-стекло.Какой из лучей 1–4 соответствует преломлённому лучу? ", a: "3", img: 'static/images/задача13otr.jpg' },
+                            { q: "<span style='display:block'>Не рекомендуется поливать растения, посаженные в открытом грунте, в солнечный жаркий полдень. С чем это связано?</span><span style='display:block'>1) Влажные листья зеркально отражают свет, что приводит к световому голоданию растений.</span><span style='display:block'>2) Влажная почва интенсивно поглощает солнечное излучение, в результате корни растений получают тепловой ожог.</span><span style='display:block'>3) Капли воды на листьях растений работают как собирающие линзы, фокусируя солнечный свет на листьях и вызывая тем самым ожоги.</span><span style='display:block'>4)Вода с поверхности листьев испаряется и охлаждает растения.</span>", a: "3" },
+                            { q: "Высота Солнца над горизонтом (см. рисунок) равна 50°. Каков угол падения луча на плоское зеркало, расположенное под некоторым углом к горизонту в точке А, если луч отразился от зеркала вертикально вверх?", a: "20", img: 'https://oge.fipi.ru/docs/B24AFED7DE6AB5BC461219556CCA4F9B/questions/35CEE9FF78DA9E2145A402E58C67662B/xs3qstsrc35CEE9FF78DA9E2145A402E58C67662B_10_1737721776.png' },
+                            { q: "Прочитайте текст и вставьте на места пропусков слова из приведённого списка.<span style='display:block'>Согласно рисунку, два параллельно идущих световых луча, распространяющихся в воздухе, на границе двух разных сред (А)__________.Оптическая плотность воды (Б)__________оптической плотности воздуха и (В)__________ оптической плотности стекла. При уменьшении угла падения углы преломления в стекле и воде (Г)__________.</span><span style='display:block'>Список слов и словосочетаний:</span><span style='display:block'>1) увеличиваются</span><span style='display:block'>2) уменьшаются </span><span style='display:block'>3) рассеиваются</span><span style='display:block'>4) преломляются</span><span style='display:block'>5) больше</span><span style='display:block'>6) меньше</span><span style='display:block'>7) равна</span>Запишите в таблицу выбранные цифры под соответствующими буквами.", a: "4562", img: 'https://www.fizika-online.ru/wp-content/uploads/2022/03/3-38.jpg' },
+                            { q: "<span style='display:block'>17)	Прочитайте текст и вставьте на места пропусков слова из приведённого списка.</span><span style='display:block'>Согласно рисунку, два параллельно идущих световых луча, распространяющихся в воздухе, на границе двух разных сред (А)__________.Оптическая плотность среды 1 (Б)__________оптической плотности воздуха и (В)__________ оптической плотности среды 2. При небольшом увеличении угла падения углы преломления в средах 1 и 2 (Г)__________.</span><span style='display:block'>1) увеличиваются</span><span style='display:block'>2) уменьшаются </span><span style='display:block'>3) рассеиваются</span><span style='display:block'>4) преломляются</span><span style='display:block'>5) больше</span><span style='display:block'>6) меньше</span><span style='display:block'>7) равна</span>Запишите в таблицу выбранные цифры под соответствующими буквами.", a: "4561", img: 'https://neznaika.info/uploads/myimg/54/561_14_0.png' }
+                        ];
+
+                        let current = 0;
+
+                        function showTask() {
+                            const task = tasks[current];
+                            const container = document.getElementById('taskContainer');
+
+                            let html = `
+            <h3 style="color: black; ">Вопрос ${current + 1} из ${tasks.length}</h3>
+            <p style = "color: black;">${task.q}</p>
+        `;
+
+                            if (task.img) {
+                                html += `<img src="${task.img}" width="400"  style="margin:15px 0;"><br>`;
+                            }
+
+                            html += `
+            <input type="text" id="userAnswer" placeholder="Ответ">
+            <button onclick="check()">Проверить</button>
+            <div id="result" style="margin-top:10px;"></div>
+        `;
+
+                            container.innerHTML = html;
+                        }
+
+                        function check() {
+                            const answer = document.getElementById('userAnswer').value.toLowerCase().trim();
+                            const result = document.getElementById('result');
+
+                            if (answer === tasks[current].a.toLowerCase()) {
+                                result.innerHTML = "<span style='color:green'>Верно!</span>";
+                                setTimeout(() => {
+                                    current++;
+                                    if (current < tasks.length) {
+                                        showTask();
+                                    } else {
+                                        document.getElementById('taskContainer').innerHTML =
+                                            "<h2>Тест завершен!</h2>";
+                                    }
+                                }, 1000);
+                            } else {
+                                result.innerHTML = "<span style='color:red'> Неверно, попробуйте еще раз</span>";
+                            }
+                        }
+
+                        // Запускаем
+                        showTask();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/styles/IntOtr.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>Интерактивная физика:суть закона</title>
+    <link rel="stylesheet" href="static/styles/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background: #70bbee;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #fff;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+        }
+
+        .sidebar>h3>a {
+            text-decoration: none;
+            color: #000307;
+            transition: color 0.3s;
+        }
+
+        .sidebar>h3 {
+            color: #000000;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #70bbee;
+            padding-bottom: 5px;
+        }
+
+        .sidebar>ul {
+            list-style: none;
+        }
+
+        .sidebar>ul>li {
+            margin: 10px 0;
+        }
+
+        .sidebar>ul>li>a {
+            text-decoration: none;
+            color: #080694;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #03073b;
+            text-decoration: underline;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .blocks-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .block {
+            padding: 20px;
+            background-color: #ebeaea;
+            border-left: 4px solid #70bbee;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(204, 189, 189, 0.829);
+        }
+
+        .block>h3 {
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .block>p {
+            color: #86757b;
+            font-size: 14px;
+        }
+
+        .sidebar>div {
+            width: 100%;
+        }
+
+        .sidebar>div>img {
+            width: 100%;
+        }
+
+        .sidebar>div {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .sidebar>div>img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* =============================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (1024px и меньше)
+   ============================================= */
+        @media screen and (max-width: 1024px) {
+            .blocks-container {
+                -ms-grid-columns: 1fr 20px 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .sidebar {
+                width: 25%;
+                min-width: 180px;
+            }
+        }
+
+        /* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МАЛЫХ ПЛАНШЕТОВ (768px и меньше)
+   ============================================= */
+        @media screen and (max-width: 768px) {
+            .container {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -webkit-flex-direction: column;
+                -moz-box-orient: vertical;
+                -moz-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 15px;
+            }
+
+            .sidebar>div {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 15px auto;
+            }
+
+            .sidebar>h3 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .sidebar>ul {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -moz-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                gap: 10px 20px;
+            }
+
+            .sidebar>ul>li {
+                margin: 0;
+            }
+
+            .blocks-container {
+                -ms-grid-columns: 1fr 15px 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .block {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+                text-align: center;
+                width: 100%;
+            }
+
+            header {
+                padding: 12px 15px;
+                -webkit-box-pack: center;
+                -webkit-justify-content: center;
+                -moz-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+
+        /* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (576px и меньше)
+   ============================================= */
+        @media screen and (max-width: 576px) {
+            .blocks-container {
+                -ms-grid-columns: 1fr;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .sidebar>ul {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -webkit-flex-direction: column;
+                -moz-box-orient: vertical;
+                -moz-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -moz-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .content {
+                padding: 12px 10px;
+            }
+
+            .block {
+                padding: 12px;
+            }
+
+            .block h3 {
+                font-size: 16px;
+            }
+
+            .block p,
+            .block a p {
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            header {
+                padding: 10px;
+            }
+        }
+
+        /* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (400px и меньше)
+   ============================================= */
+        @media screen and (max-width: 400px) {
+            .logo {
+                font-size: 14px;
+            }
+
+            .block {
+                padding: 10px;
+            }
+
+            .block h3 {
+                font-size: 15px;
+            }
+
+            .block p {
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 10px 8px;
+            }
+
+            .sidebar {
+                padding: 10px;
+            }
+
+            .sidebar>div {
+                width: 60px;
+                height: 60px;
+            }
+
+            .sidebar>ul>li>a {
+                font-size: 14px;
+            }
+        }
+
+        /* =============================================
+   ФИКСЫ ДЛЯ IE11
+   ============================================= */
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+            .blocks-container {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            }
+
+            .block {
+                width: 31%;
+                margin: 1%;
+            }
+        }
+
+        @media all and (-ms-high-contrast: none) and (max-width: 768px),
+        (-ms-high-contrast: active) and (max-width: 768px) {
+            .block {
+                width: 48%;
+            }
+        }
+
+        @media all and (-ms-high-contrast: none) and (max-width: 576px),
+        (-ms-high-contrast: active) and (max-width: 576px) {
+            .block {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Интерактивная физика:суть закона. Оптические явления </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div>
+                <img src="https://u-static.haozhaopian.net/uid_183b249927714afba434feb75b2f6871/aiImage/e2955b0feeab408d954e8bb392ab1228.jpg"
+                    alt="Картинка интерактивная физика">
+            </div>
+
+            <h3><a href="index.html"> Разделы физики </a></h3>
+            <ul>
+                <li><a href="page.html">Механические явления</a></li>
+                <li><a href="page2.html">Электромагнитные явления</a></li>
+                <li><a href="page3.html">Оптические явления</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="blocks-container">
+                <div class="block">
+                    <a href="IntLinz.html">
+                        <h3>Линзы и изображения</h3>
+                        <p>Постройте изображение в собирающих и рассеивающих линзах, изучите характеристики.</p>
+                    </a>
+                </div>
+
+                <div class="block">
+                    <a href="IntOtr.html">
+                        <h3>Отражение и преломление</h3>
+                        <p>Луч на границе сред. Меняйте угол, показатель преломления, наблюдайте ход лучей.</p>
+                    </a>
+                </div>
+
+                <div class="block" style="visibility: hidden;"></div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

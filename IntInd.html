@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контейнеры: верхний и два нижних</title>
+    <link rel="stylesheet" href="static/styles/stINT.css">
+</head>
+
+<body>
+    <div class="meny">
+        <a href="index.html">
+            <h2>← Главное меню</h2>
+        </a>
+    </div>
+
+    <h1>Электромагнитная индукция</h1>
+
+    <div class="container-wrapper">
+        <div class="top-container">
+            <h2>Интерактив</h2>
+            <div class="sim-layout">
+                <div class="sim-main">
+                    <div class="simulation-container">
+                        <canvas id="electry-canvas" width="700" height="350"></canvas>
+                        <div class="sim-controls">
+                            <div class="control-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bottom-row">
+            <div class="bottom-container left-container">
+                <h3>Теория</h3>
+                <div class="teoryContainer">
+                    <p>Явление электромагнитной индукции: при всяком изменении магнитного потока, пронизывающего
+                        площадь,
+                        ограниченную замкнутым проводником, в этом проводнике возникает электрический ток, существующий
+                        в
+                        течение всего процесса изменения магнитного потока.</p>
+                    <p>Индукционный ток – упорядоченное движение электронов, возникающее в замкнутом проводящем контуре
+                        при
+                        изменении потока магнитной индукции, пронизывающего этот контур.</p>
+                    <p>Причины возникновения индукционного тока: движение магнита относительно проводника, изменение
+                        силы
+                        тока в соседнем проводнике, электромагнитная индукция.</p>
+                    <p>Правило Ленца: возникающий в замкнутом контуре индукционный ток своим магнитным полем
+                        противодействует изменению внешнего магнитного потока, которое вызвало этот ток.</p>
+                    <p>Гальванометр – прибор, в котором используется явление взаимодействия катушки с током и магнита.
+                        Гальванометр показывает наличие тока и его направление. Когда в катушке существует ток, стрелка
+                        отклоняется.</p>
+                </div>
+            </div>
+
+            <div class="bottom-container right-container">
+                <h3>Задачи из открытого банка ФИПИ</h3>
+                <div id="taskContainer">
+
+                    <script>
+                        const tasks = [
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" },
+                            { q: "", a: "" }
+                        ];
+
+                        let current = 0;
+
+                        function showTask() {
+                            const task = tasks[current];
+                            const container = document.getElementById('taskContainer');
+
+                            let html = `
+            <h3 style="color: black; ">Вопрос ${current + 1} из ${tasks.length}</h3>
+            <p style = "color: black;">${task.q}</p>
+        `;
+
+                            if (task.img) {
+                                html += `<img src="${task.img}" width="400"  style="margin:15px 0;"><br>`;
+                            }
+
+                            html += `
+            <input type="text" id="userAnswer" placeholder="Ответ">
+            <button onclick="check()">Проверить</button>
+            <div id="result" style="margin-top:10px;"></div>
+        `;
+
+                            container.innerHTML = html;
+                        }
+
+                        function check() {
+                            const answer = document.getElementById('userAnswer').value.toLowerCase().trim();
+                            const result = document.getElementById('result');
+
+                            if (answer === tasks[current].a.toLowerCase()) {
+                                result.innerHTML = "<span style='color:green'>Верно!</span>";
+                                setTimeout(() => {
+                                    current++;
+                                    if (current < tasks.length) {
+                                        showTask();
+                                    } else {
+                                        document.getElementById('taskContainer').innerHTML =
+                                            "<h2>Тест завершен!</h2>";
+                                    }
+                                }, 1000);
+                            } else {
+                                result.innerHTML = "<span style='color:red'> Неверно, попробуйте еще раз</span>";
+                            }
+                        }
+
+                        // Запускаем
+                        showTask();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

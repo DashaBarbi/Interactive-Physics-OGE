@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контейнеры: верхний и два нижних</title>
+    <link rel="stylesheet" href="static/styles/stINT.css">
+</head>
+
+<body>
+    <div class="meny">
+        <a href="index.html">
+            <h2>← Главное меню</h2>
+        </a>
+    </div>
+
+    <h1>Закон сохранения энергии</h1>
+
+    <div class="container-wrapper">
+        <div class="top-container">
+            <h2>Интерактив</h2>
+            <div class="sim-layout">
+                <div class="sim-main">
+                    <div class="simulation-container">
+                        <canvas id="energy-canvas" width="700" height="350"></canvas>
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label>Масса шарика (кг):</label>
+                                <input type="range" id="ball-mass" min="0.5" max="5" value="1" step="0.5">
+                                <span id="ball-mass-val">1</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Начальная высота (м):</label>
+                                <input type="range" id="ball-height" min="1" max="10" value="5" step="0.5">
+                                <span id="ball-height-val">5</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Трение:</label>
+                                <input type="range" id="friction" min="0" max="0.5" value="0" step="0.05">
+                                <span id="friction-val">0</span>
+                            </div>
+                            <div class="control-group">
+                                <label>Планета:</label>
+                                <select id="planet">
+                                    <option value="9.8">Земля (g = 9.8 м/с²)</option>
+                                    <option value="1.6">Луна (g = 1.6 м/с²)</option>
+                                    <option value="3.7">Марс (g = 3.7 м/с²)</option>
+                                </select>
+                            </div>
+                            <div class="sim-buttons">
+                                <button class="btn-start" onclick="startEnergy()">▶ Запуск</button>
+                                <button class="btn-reset" onclick="resetEnergy()">↺ Сброс</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="energy-bars">
+                        <div class="energy-bar-container">
+                            <div class="energy-bar-label">Еп</div>
+                            <div class="energy-bar potential">
+                                <div class="energy-bar-fill" id="ep-bar"></div>
+                            </div>
+                            <span id="ep-value">0 Дж</span>
+                        </div>
+                        <div class="energy-bar-container">
+                            <div class="energy-bar-label">Ек</div>
+                            <div class="energy-bar kinetic">
+                                <div class="energy-bar-fill" id="ek-bar"></div>
+                            </div>
+                            <span id="ek-value">0 Дж</span>
+                        </div>
+                        <div class="energy-bar-container">
+                            <div class="energy-bar-label">Е</div>
+                            <div class="energy-bar total">
+                                <div class="energy-bar-fill" id="e-bar"></div>
+                            </div>
+                            <span id="e-value">0 Дж</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-row">
+            <div class="bottom-container left-container">
+                <h3>Теория</h3>
+                <div class="teoryContainer">
+                    <p>Потенциальная энергия – скалярная физическая величина, равная работе, совершаемой потенциальной
+                        силой
+                        при перемещении тела из этой точки в точку, принятую за нуль потенциальной энергии. Еп = mgH</p>
+                    <p>Кинетическая энергия – скалярная физическая величина, равная половине произведения массы тела и
+                        квадрата его скорости. Ек = mV^2/2</p>
+                    <p>Закон сохранения энергии: в замкнутой консервативной системе полная механическая энергия
+                        сохраняется
+                        (не изменяется со временем): Ек1 + Еп1 = Ек2 + Еп2</p>
+                    <p>Закон сохранения полной механической энергии предполагает взаимное превращение кинетической
+                        энергии в
+                        потенциальную и обратно в равных количествах. При этом полная механическая энергия остаётся
+                        неизменной.</p>
+                    <p>Механическая энергия может переходить во внутреннюю. Этот процесс происходит путём совершения
+                        механической работы над телом.</p>
+                </div>
+            </div>
+            <div class="bottom-container right-container">
+                <h3>Задачи из открытого банка ФИПИ</h3>
+                <div id="taskContainer">
+
+                    <script>
+                        const tasks = [
+                            { q: "Установите соответствие между физическими величинами и их определениями. К каждой позиции первого столбца подберите соответствующую позицию из второго столбца и запишите в таблицу выбранные цифры под соответствующими буквами.", a: "124", img: 'static/images/задача_1eng.PNG' },
+                            { q: "Тело брошено вертикально вверх. На рисунке показан график зависимости кинетической энергии тела от его высоты над точкой броска. Чему равна потенциальная энергия тела на высоте 2 м относительно точки броска? Сопротивлением воздуха пренебречь. Потенциальную энергию тела в точке броска считать равной нулю. ", a: "3", img: 'static/images/задача_2eng.jpg' },
+                            { q: "Во сколько раз уменьшилась кинетическая энергия движущегося тела, если его скорость уменьшилась в 4 раза? ", a: "16" },
+                            { q: "Камень массой 1 кг, брошенный вертикально вверх, достиг максимальной высоты – 20 м. Чему равна кинетическая энергия камня в момент броска? Сопротивлением воздуха пренебречь. ", a: "200" },
+                            { q: "Камень массой 2 кг бросили вертикально вверх с поверхности Земли. В момент броска его кинетическая энергия была равна 400 Дж. Какую потенциальную энергию относительно поверхности Земли будет иметь камень в верхней точке траектории полёта? Сопротивлением воздуха пренебречь. ", a: "400" },
+                            { q: "Два шара с разными массами подняты на разную высоту (см. рисунок) относительно поверхности стола. Потенциальная энергия тела 1 равна 300 Дж. Определите потенциальную энергию тела 2. Считать, что потенциальная энергия отсчитывается от уровня крышки стола.", a: "300", img: 'static/images/задача_3eng.png' },
+                            { q: "<span style='display:block'>Прочитайте текст и вставьте на места пропусков слова из приведённого списка.</span> Камень, подброшенный вверх из точки 1, совершает падение в тормозящей его движение атмосфере. Траектория движения камня изображена на рисунке. В положении 1 кинетическая энергия камня (А)__________ его кинетической энергии в положении 3. Потенциальная энергия в положении 1 (Б)__________ потенциальной энергии в положении 3.  На участке 1-2 сила трения совершает (В)__________ работу. При этом внутренняя энергия камня в процессе движения (Г)__________.  <span style='display:block'>Список слов и словосочетаний:</span>  <span style='display:block'> 1) равна</span>  <span style='display:block'> 2) больше</span>  <span style='display:block'> 3) меньше</span>  <span style='display:block'>4) положительный</span>  <span style='display:block'> 5) отрицательный</span>  <span style='display:block'> 6) увеличивается</span>  <span style='display:block'> 7) уменьшается</span>  <span style='display:block'> 8) не изменяется</span> Запишите в таблицу выбранные цифры под соответствующими буквами.", a: "2156", img: 'static/images/задача_4eng.png' },
+                            { q: "Мяч, катящийся по горизонтальному ровному футбольному полю, останавливается из-за трения. Как при этом изменяются полная механическая энергия и внутренняя энергия мяча?<span style='display:block'>Для каждой величины определите соответствующий характер изменения:</span> <span style='display:block'> 1) увеличивается</span> <span style='display:block'>2) уменьшается</span> <span style='display:block'>3) не изменяется</span> Запишите в таблицу выбранные цифры для каждой физической величины.Цифры в ответе могут повторяться", a: "21", img: 'static/images/задача_8eng.PNG' },
+                            { q: "Футбольный мяч, катящийся по ровному горизонтальному участку земли, останавливается из-за трения. Как при этом изменяются кинетическая и потенциальная энергия мяча?<span style='display:block'>Для каждой величины определите соответствующий характер изменения:</span> <span style='display:block'> 1) увеличивается</span> <span style='display:block'>2) уменьшается</span> <span style='display:block'>3) не изменяется</span> Запишите в таблицу выбранные цифры для каждой физической величины.Цифры в ответе могут повторяться", a: "23", img: 'static/images/задача_9eng.PNG' },
+                            { q: "С крыши дома вертикально вниз бросают камень. Как изменяются потенциальная энергия и кинетическая энергия камня при его движении вниз? Сопротивление воздуха пренебрежимо мало.<span style='display:block'>Для каждой величины определите соответствующий характер изменения:</span> <span style='display:block'> 1) увеличивается</span> <span style='display:block'>2) уменьшается</span> <span style='display:block'>3) не изменяется</span> Запишите в таблицу выбранные цифры для каждой физической величины.Цифры в ответе могут повторяться", a: "21", img: 'static/images/задача_10eng.PNG' },
+                            { q: "Тело массой 200 г брошено вертикально вверх с начальной скоростью 20 м/с. На какой высоте относительно точки бросания кинетическая энергия тела будет равна 20 Дж? Сопротивлением воздуха пренебречь. ", a: "10" },
+                            { q: "При вертикальном броске телу сообщили кинетическую энергию 50 Дж. Чему равна масса этого тела, если максимальная высота его подъёма равна 10 м? Сопротивлением воздуха пренебречь. ", a: "0,5" },
+                            { q: "Шар массой 4 кг, движущийся по горизонтальной поверхности с некоторой скоростью, соударяется с неподвижным шаром такой же массы, после чего шары движутся как одно целое. Определите, во сколько раз изменилась кинетическая энергия системы шаров в результате соударения. ", a: "2" },
+                            { q: "С какой скоростью нужно бросить вертикально вниз с высоты 1,25 м шарик, чтобы после удара о горизонтальную поверхность он поднялся на высоту, в 3 раза бόльшую начальной, если в процессе удара теряется 40 % механической энергии шарика? Сопротивлением воздуха пренебречь. ", a: "10" }
+                        ];
+
+                        let current = 0;
+
+                        function showTask() {
+                            const task = tasks[current];
+                            const container = document.getElementById('taskContainer');
+
+                            let html = `
+            <h3 style="color: black; ">Вопрос ${current + 1} из ${tasks.length}</h3>
+            <p style = "color: black;">${task.q}</p>
+        `;
+
+                            if (task.img) {
+                                html += `<img src="${task.img}" width="400"  style="margin:15px 0;"><br>`;
+                            }
+
+                            html += `
+            <input type="text" id="userAnswer" placeholder="Ответ">
+            <button onclick="check()">Проверить</button>
+            <div id="result" style="margin-top:10px;"></div>
+        `;
+
+                            container.innerHTML = html;
+                        }
+
+                        function check() {
+                            const answer = document.getElementById('userAnswer').value.toLowerCase().trim();
+                            const result = document.getElementById('result');
+
+                            if (answer === tasks[current].a.toLowerCase()) {
+                                result.innerHTML = "<span style='color:green'>Верно!</span>";
+                                setTimeout(() => {
+                                    current++;
+                                    if (current < tasks.length) {
+                                        showTask();
+                                    } else {
+                                        document.getElementById('taskContainer').innerHTML =
+                                            "<h2>Тест завершен!</h2>";
+                                    }
+                                }, 1000);
+                            } else {
+                                result.innerHTML = "<span style='color:red'> Неверно, попробуйте еще раз</span>";
+                            }
+                        }
+
+                        // Запускаем
+                        showTask();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/styles/IntEng.js"></script>
+</body>
+
+</html>
