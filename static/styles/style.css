@@ -1,0 +1,431 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+header {
+    background: #70bbee;
+    color: white;
+    padding: 15px 30px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.sidebar {
+    width: 20%;
+    min-width: 200px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sidebar > h3 {
+    color: #000000;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #70bbee;
+    padding-bottom: 5px;
+}
+
+.sidebar > h3 > a {
+    text-decoration: none;
+    color: #000307;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.sidebar > ul {
+    list-style: none;
+}
+
+.sidebar > ul > li {
+    margin: 10px 0;
+}
+
+.sidebar > ul > li > a {
+    text-decoration: none;
+    color: #1465c2;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #03073b;
+    text-decoration: underline;
+}
+
+.content {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 20px;
+}
+
+.blocks-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.block {
+    padding: 20px;
+    background-color: #ebeaea;
+    border-left: 4px solid #70bbee;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-transition: -webkit-transform 0.2s, box-shadow 0.2s;
+    -moz-transition: -moz-transform 0.2s, box-shadow 0.2s;
+    -o-transition: -o-transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.block:hover {
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    transform: translateY(-2px);
+    -webkit-box-shadow: 0 4px 8px rgba(204, 189, 189, 0.829);
+    -moz-box-shadow: 0 4px 8px rgba(204, 189, 189, 0.829);
+    box-shadow: 0 4px 8px rgba(204, 189, 189, 0.829);
+}
+
+.block h3 {
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.block a {
+    text-decoration: none;
+    color: #000307;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+    display: block;
+}
+
+.block a p,
+.block p {
+    color: #86757b;
+    font-size: 14px;
+}
+
+.sidebar > div {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.sidebar > div > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (1024px и меньше)
+   ============================================= */
+@media screen and (max-width: 1024px) {
+    .blocks-container {
+        -ms-grid-columns: 1fr 20px 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    header {
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .sidebar {
+        width: 25%;
+        min-width: 180px;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МАЛЫХ ПЛАНШЕТОВ (768px и меньше)
+   ============================================= */
+@media screen and (max-width: 768px) {
+    .container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px;
+    }
+    
+    .sidebar > div {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 15px auto;
+    }
+    
+    .sidebar > h3 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .sidebar > ul {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+    
+    .sidebar > ul > li {
+        margin: 0;
+    }
+    
+    .blocks-container {
+        -ms-grid-columns: 1fr 15px 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .block {
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 18px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    header {
+        padding: 12px 15px;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (576px и меньше)
+   ============================================= */
+@media screen and (max-width: 576px) {
+    .blocks-container {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .sidebar > ul {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .content {
+        padding: 12px 10px;
+    }
+    
+    .block {
+        padding: 12px;
+    }
+    
+    .block h3 {
+        font-size: 16px;
+    }
+    
+    .block p,
+    .block a p {
+        font-size: 13px;
+    }
+    
+    .logo {
+        font-size: 16px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (400px и меньше)
+   ============================================= */
+@media screen and (max-width: 400px) {
+    .logo {
+        font-size: 14px;
+    }
+    
+    .block {
+        padding: 10px;
+    }
+    
+    .block h3 {
+        font-size: 15px;
+    }
+    
+    .block p {
+        font-size: 12px;
+    }
+    
+    .content {
+        padding: 10px 8px;
+    }
+    
+    .sidebar {
+        padding: 10px;
+    }
+    
+    .sidebar > div {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .sidebar > ul > li > a {
+        font-size: 14px;
+    }
+}
+
+/* =============================================
+   ФИКСЫ ДЛЯ IE11
+   ============================================= */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .blocks-container {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    
+    .block {
+        width: 31%;
+        margin: 1%;
+    }
+}
+
+@media all and (-ms-high-contrast: none) and (max-width: 768px), (-ms-high-contrast: active) and (max-width: 768px) {
+    .block {
+        width: 48%;
+    }
+}
+
+@media all and (-ms-high-contrast: none) and (max-width: 576px), (-ms-high-contrast: active) and (max-width: 576px) {
+    .block {
+        width: 100%;
+    }
+}

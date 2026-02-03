@@ -1,0 +1,1072 @@
+/* =============================================
+   КРОССБРАУЗЕРНАЯ СОВМЕСТИМОСТЬ
+   Поддержка: Chrome, Firefox, Safari, Edge, Opera, IE11
+   ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #70bbee;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.container-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Меню назад */
+.meny {
+    margin-bottom: 20px;
+}
+
+.meny a {
+    text-decoration: none;
+    color: #62a2f7;
+    -webkit-transition: color 0.3s;
+    -moz-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.meny a:hover {
+    color: #1a5cb0;
+}
+
+.meny h2 {
+    font-size: 1.2rem;
+}
+
+/* Верхний контейнер с интерактивом */
+.top-container {
+    width: 100%;
+    background: #9bbcf8;
+    background: -webkit-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: -moz-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: -o-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: linear-gradient(135deg, #9bbcf8 0%, #edeff1 100%);
+    color: #0967a5;
+    padding: 30px 20px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.top-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Нижний ряд - теория и задачи */
+.bottom-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.bottom-container {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #9bbcf8;
+    background: -webkit-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: -moz-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: -o-linear-gradient(315deg, #9bbcf8 0%, #edeff1 100%);
+    background: linear-gradient(135deg, #9bbcf8 0%, #edeff1 100%);
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    padding: 25px;
+    -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    color: #0967a5;
+}
+
+.bottom-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+/* Контейнеры для теории и задач */
+.teoryContainer,
+#taskContainer {
+    background-color: #ffffff;
+    padding: 15px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.teoryContainer p {
+    color: #00040a;
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+#taskContainer h3 {
+    color: rgb(0, 14, 14);
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+#taskContainer p {
+    color: black;
+    margin-bottom: 10px;
+}
+
+#taskContainer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+#taskContainer input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#taskContainer button {
+    padding: 10px 20px;
+    margin: 5px 0;
+    font-size: 14px;
+    background-color: #70bbee;
+    color: white;
+    border: none;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+#taskContainer button:hover {
+    background-color: #5aa3d6;
+}
+
+/* Контейнер симуляции */
+.simulation-container {
+    background: #ffffff;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #a0a6a7;
+}
+
+.simulation-container canvas {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background: #0a0a0a;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Панель управления */
+.sim-controls {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 15px 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.control-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Ползунки - кроссбраузерные стили */
+.control-group input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: #1b4580;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Chrome, Safari, Opera */
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #6995f5;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Firefox */
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #6995f5;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* IE/Edge */
+.control-group input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #6995f5;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.control-group input[type="range"]::-ms-track {
+    width: 100%;
+    height: 6px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+.control-group input[type="range"]::-ms-fill-lower {
+    background: #1b4580;
+    border-radius: 3px;
+}
+
+.control-group input[type="range"]::-ms-fill-upper {
+    background: #1b4580;
+    border-radius: 3px;
+}
+
+.control-group span {
+    font-family: 'Courier New', monospace;
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.control-group select {
+    width: 100%;
+    padding: 10px;
+    background: #1b4580;
+    border: 1px solid #a0a6a7;
+    color: #f1f5f9;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: #6995f5;
+}
+
+/* Checkbox группа */
+.checkbox-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-group label {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Кнопки */
+.sim-buttons {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 10px;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.btn-start,
+.btn-reset {
+    padding: 12px 25px;
+    border: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-start {
+    background: #10b981;
+    color: white;
+}
+
+.btn-start:hover {
+    background: #059669;
+}
+
+.btn-reset {
+    background: #1b4580;
+    color: #f1f5f9;
+}
+
+.btn-reset:hover {
+    background: #475569;
+}
+
+/* Панель результатов */
+.results-panel,
+.lens-results,
+.refraction-results {
+    background: #ffffff;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #a0a6a7;
+    margin-top: 20px;
+}
+
+.results-panel h4,
+.lens-results h4,
+.refraction-results h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 700;
+}
+
+.result-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.result-row span:first-child {
+    color: #333;
+}
+
+.result-row span:last-child {
+    font-family: 'Courier New', monospace;
+    color: #000;
+    font-weight: 600;
+}
+
+.result-grid {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 15px 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.result-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.result-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.result-value {
+    font-family: 'Courier New', monospace;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.total-reflection-warning {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fef3c7;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    color: #92400e;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Energy bars */
+.energy-bars {
+    background: #ffffff;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    border: 1px solid #a0a6a7;
+    padding: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.energy-bar-container {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 200px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.energy-bar-label {
+    font-weight: 700;
+    min-width: 30px;
+    color: #333;
+}
+
+.energy-bar {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    height: 24px;
+    background: #1b4580;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.energy-bar-fill {
+    height: 100%;
+    -webkit-transition: width 0.1s;
+    -moz-transition: width 0.1s;
+    -o-transition: width 0.1s;
+    transition: width 0.1s;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.energy-bar.potential .energy-bar-fill {
+    background: #3b82f6;
+    background: -webkit-linear-gradient(left, #3b82f6, #60a5fa);
+    background: -moz-linear-gradient(left, #3b82f6, #60a5fa);
+    background: -o-linear-gradient(left, #3b82f6, #60a5fa);
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.energy-bar.kinetic .energy-bar-fill {
+    background: #ef4444;
+    background: -webkit-linear-gradient(left, #ef4444, #f87171);
+    background: -moz-linear-gradient(left, #ef4444, #f87171);
+    background: -o-linear-gradient(left, #ef4444, #f87171);
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.energy-bar.total .energy-bar-fill {
+    background: #10b981;
+    background: -webkit-linear-gradient(left, #10b981, #34d399);
+    background: -moz-linear-gradient(left, #10b981, #34d399);
+    background: -o-linear-gradient(left, #10b981, #34d399);
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.energy-bars span {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #333;
+    min-width: 60px;
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (1024px и меньше)
+   ============================================= */
+@media screen and (max-width: 1024px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .top-container {
+        padding: 25px 15px;
+    }
+    
+    .top-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .bottom-row {
+        gap: 20px;
+    }
+    
+    .bottom-container {
+        padding: 20px;
+    }
+    
+    .bottom-container h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (768px и меньше)
+   ============================================= */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    
+    .meny h2 {
+        font-size: 1rem;
+    }
+    
+    /* Теория и задачи в колонку */
+    .bottom-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .top-container,
+    .bottom-container {
+        padding: 20px 15px;
+    }
+    
+    .top-container h2 {
+        font-size: 1.4rem;
+    }
+    
+    .bottom-container h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Контролы в 2 колонки */
+    .sim-controls {
+        -ms-grid-columns: 1fr 12px 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .simulation-container {
+        padding: 15px;
+    }
+    
+    /* Результаты в 1 колонку */
+    .result-grid {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .teoryContainer,
+    #taskContainer {
+        padding: 12px;
+        max-height: 350px;
+    }
+    
+    .teoryContainer p {
+        font-size: 14px;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (576px и меньше)
+   ============================================= */
+@media screen and (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .meny h2 {
+        font-size: 0.9rem;
+    }
+    
+    .top-container,
+    .bottom-container {
+        padding: 15px 12px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+    
+    .top-container h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .bottom-container h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    /* Контролы в 1 колонку */
+    .sim-controls {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .simulation-container {
+        padding: 12px;
+    }
+    
+    /* Кнопки в колонку */
+    .sim-buttons {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    
+    .btn-start,
+    .btn-reset {
+        width: 100%;
+        padding: 14px;
+    }
+    
+    /* Energy bars в колонку */
+    .energy-bars {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .energy-bar-container {
+        min-width: 100%;
+    }
+    
+    /* Результаты */
+    .results-panel,
+    .lens-results,
+    .refraction-results {
+        padding: 15px;
+    }
+    
+    .result-row {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 3px;
+        padding: 10px 0;
+    }
+    
+    .result-grid {
+        gap: 12px;
+    }
+    
+    /* Теория и задачи */
+    .teoryContainer,
+    #taskContainer {
+        padding: 10px;
+        max-height: 300px;
+    }
+    
+    .teoryContainer p {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    #taskContainer input[type="text"] {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    #taskContainer button {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    .control-group label {
+        font-size: 13px;
+    }
+    
+    .control-group select {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+/* =============================================
+   АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ (400px и меньше)
+   ============================================= */
+@media screen and (max-width: 400px) {
+    body {
+        padding: 8px;
+    }
+    
+    h1 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .meny h2 {
+        font-size: 0.85rem;
+    }
+    
+    .top-container,
+    .bottom-container {
+        padding: 12px 10px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+    
+    .top-container h2 {
+        font-size: 1.1rem;
+    }
+    
+    .bottom-container h3 {
+        font-size: 1rem;
+    }
+    
+    .simulation-container {
+        padding: 10px;
+    }
+    
+    .btn-start,
+    .btn-reset {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .teoryContainer p {
+        font-size: 12px;
+    }
+    
+    #taskContainer h3 {
+        font-size: 13px;
+    }
+    
+    #taskContainer p {
+        font-size: 13px;
+    }
+    
+    .result-label {
+        font-size: 12px;
+    }
+    
+    .result-value {
+        font-size: 14px;
+    }
+    
+    .energy-bar-label {
+        font-size: 14px;
+    }
+    
+    .energy-bars span {
+        font-size: 12px;
+        min-width: 50px;
+    }
+}
+
+/* =============================================
+   ФИКС ДЛЯ CANVAS НА МОБИЛЬНЫХ
+   ============================================= */
+@media screen and (max-width: 768px) {
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* =============================================
+   ФИКСЫ ДЛЯ IE11
+   ============================================= */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .bottom-row {
+        display: block;
+    }
+    
+    .bottom-container {
+        width: 48%;
+        float: left;
+        margin-right: 2%;
+        margin-bottom: 20px;
+    }
+    
+    .bottom-container:nth-child(2n) {
+        margin-right: 0;
+    }
+    
+    .sim-controls {
+        display: block;
+    }
+    
+    .control-group {
+        width: 48%;
+        float: left;
+        margin-right: 2%;
+        margin-bottom: 15px;
+    }
+    
+    .sim-buttons {
+        clear: both;
+        padding-top: 15px;
+    }
+    
+    .result-grid {
+        display: block;
+    }
+    
+    .result-item {
+        width: 48%;
+        float: left;
+        margin-right: 2%;
+        margin-bottom: 10px;
+    }
+    
+    .energy-bars {
+        display: block;
+    }
+    
+    .energy-bar-container {
+        margin-bottom: 15px;
+    }
+}
+
+@media all and (-ms-high-contrast: none) and (max-width: 768px), (-ms-high-contrast: active) and (max-width: 768px) {
+    .bottom-container {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+    
+    .control-group {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+    
+    .result-item {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+}
+
+/* =============================================
+   CLEARFIX ДЛЯ IE
+   ============================================= */
+.bottom-row:after,
+.sim-controls:after,
+.result-grid:after,
+.energy-bars:after {
+    content: "";
+    display: table;
+    clear: both;
+}
