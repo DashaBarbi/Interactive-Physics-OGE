@@ -17,22 +17,52 @@
 
     <h1>Электромагнитная индукция</h1>
 
-    <div class="container-wrapper">
+ <div class="container-wrapper">
         <div class="top-container">
             <h2>Интерактив</h2>
             <div class="sim-layout">
                 <div class="sim-main">
                     <div class="simulation-container">
-                        <canvas id="electry-canvas" width="700" height="350"></canvas>
-                        <div class="sim-controls">
-                            <div class="control-group">
+                        <canvas id="electry-canvas" width="500" height="200"></canvas>
+                        <div class="ind-panel">
+                            <div class="result-grid">
+                                <div class="result-item">
+                                    <div class="result-label">Ток I (А)</div>
+                                    <div class="result-value" id="vI">0.000</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-label">Направление</div>
+                                    <div class="result-value" id="vD">—</div>
+                                </div>
+                            </div>
+                            <div class="sim-controls">
+                                <div class="control-group">
+                                    <label>Полюс к катушке:</label>
+                                    <button class="btn-pole pole-n" id="poleBtn" onclick="flipPole()">
+                                        <span id="poleIcon">N</span>
+                                        <span id="poleTxt"> — северный</span>
+                                    </button>
+                                </div>
+                                <div class="control-group">
+                                    <label>Скорость движения:</label>
+                                    <input type="range" id="spdSlider" min="1" max="5" step=".5" value="2"
+                                        oninput="setSpd(this.value)">
+                                    <span id="spdVal">×2</span>
+                                </div>
+                            </div>
+                            <div class="sim-buttons">
+                                <button class="btn-start" id="launchBtn" onclick="toggleLaunch()">
+                                    ▶ Запустить
+                                </button>
+                                <button class="btn-reset" id="resetBtn" onclick="resetSim()">
+                                    ↺ Сброс
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div class="bottom-row">
             <div class="bottom-container left-container">
