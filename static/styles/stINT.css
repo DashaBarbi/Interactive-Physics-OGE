@@ -1462,13 +1462,13 @@ h1 {
   text-transform: uppercase;
 }
 
-/* ===== CANVAS ===== */
 .canvas-wrap {
   background: #080e1a;
   position: relative;
   height: 370px;
   overflow: hidden;
   border-bottom: 2px solid #0d1a30;
+  border-radius: 12px;
 }
 
 #csvg {
