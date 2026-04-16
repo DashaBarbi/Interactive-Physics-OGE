@@ -995,13 +995,13 @@ function updateTable() {
     else if (el.type === "battery") state = `I = ${r.I.toFixed(3)} А`;
 
     html += `<tr>
-      <td style="font-weight:700;color:${COLORS[el.type]}">${i + 1}</td>
-      <td style="font-weight:700">${NAMES[el.type]}</td>
-      <td style="font-size:.78rem;color:#666">${param}</td>
-      <td style="font-family:'Roboto Mono',monospace;color:#1356b4;font-weight:700">${V}</td>
-      <td style="font-family:'Roboto Mono',monospace;color:#2e7d32;font-weight:700">${I}</td>
-      <td style="font-family:'Roboto Mono',monospace;color:#7b1fa2;font-weight:700">${P}</td>
-      <td>${state}</td>
+      <td style="font-weight:700;color:#000000">${i + 1}</td>
+      <td style="font-weight:700;color:#000000">${NAMES[el.type]}</td>
+      <td style="font-size:.78rem;color:#000000">${param}</td>
+      <td style="font-family:'Roboto Mono',monospace;color:#000000;font-weight:700">${V}</td>
+      <td style="font-family:'Roboto Mono',monospace;color:#000000;font-weight:700">${I}</td>
+      <td style="font-family:'Roboto Mono',monospace;color:#000000;font-weight:700">${P}</td>
+      <td style="color:#000000">${state}</td>
     </tr>`;
   });
 
