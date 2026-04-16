@@ -16,19 +16,176 @@
     </div>
 
     <h1>Электрические цепи</h1>
-
     <div class="container-wrapper">
         <div class="top-container">
             <h2>Интерактив</h2>
             <div class="sim-layout">
                 <div class="sim-main">
                     <div class="simulation-container">
-                        <canvas id="electry-canvas" width="700" height="350"></canvas>
-                        <div class="sim-controls">
-                            <div class="control-group">
+                        <div class="canvas-wrap">
+                            <svg id="csvg" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="gdot" width="40" height="40" patternUnits="userSpaceOnUse">
+                                        <circle cx="0" cy="0" r="1.1" fill="rgba(100,160,255,.12)" />
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#gdot)" />
+                                <g id="wires-layer"></g>
+                                <g id="els-layer"></g>
+                                <g id="wire-prev"></g>
+                            </svg>
+                        </div>
+
+                        <div class="controls">
+                            <div class="lib-label">Библиотека элементов:</div>
+                            <div class="library">
+                                <button class="elib-btn" data-type="battery">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="1" y1="13" x2="12" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <line x1="12" y1="5" x2="12" y2="21" stroke="currentColor" stroke-width="3" />
+                                        <line x1="17" y1="9" x2="17" y2="17" stroke="currentColor" stroke-width="1.5" />
+                                        <line x1="22" y1="5" x2="22" y2="21" stroke="currentColor" stroke-width="3" />
+                                        <line x1="27" y1="9" x2="27" y2="17" stroke="currentColor" stroke-width="1.5" />
+                                        <line x1="27" y1="13" x2="45" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <text x="9" y="25" font-size="7" fill="currentColor">+</text>
+                                        <text x="29" y="25" font-size="7" fill="currentColor">-</text>
+                                    </svg>
+                                    Батарея
+                                </button>
+
+                                <button class="elib-btn" data-type="resistor">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="0" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <rect x="8" y="7" width="30" height="12" rx="2" fill="none"
+                                            stroke="currentColor" stroke-width="2" />
+                                        <polyline points="8,13 13,7 18,19 23,7 28,19 33,7 38,13" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" opacity=".7" />
+                                        <line x1="38" y1="13" x2="46" y2="13" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                    Резистор
+                                </button>
+                                
+                                <button class="elib-btn" data-type="lamp">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="0" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="23" cy="13" r="9" fill="none" stroke="currentColor"
+                                            stroke-width="2" />
+                                        <line x1="16" y1="6" x2="30" y2="20" stroke="currentColor" stroke-width="1.5" />
+                                        <line x1="30" y1="6" x2="16" y2="20" stroke="currentColor" stroke-width="1.5" />
+                                        <line x1="32" y1="13" x2="46" y2="13" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                    Лампа
+                                </button>
+
+                                <button class="elib-btn" data-type="switch">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="0" y1="13" x2="14" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="14" cy="13" r="3" fill="currentColor" />
+                                        <line x1="14" y1="13" x2="28" y2="6" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="32" cy="13" r="3" fill="currentColor" />
+                                        <line x1="32" y1="13" x2="46" y2="13" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                    Ключ
+                                </button>
+
+                                <button class="elib-btn" data-type="ammeter">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="0" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="23" cy="13" r="9" fill="none" stroke="currentColor"
+                                            stroke-width="2" />
+                                        <text x="18" y="17" font-size="10" fill="currentColor"
+                                            font-weight="bold">A</text>
+                                        <line x1="35" y1="13" x2="46" y2="13" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                    Амперметр
+                                </button>
+
+                                <button class="elib-btn" data-type="voltmeter">
+                                    <svg width="46" height="26" viewBox="0 0 46 26">
+                                        <line x1="0" y1="13" x2="11" y2="13" stroke="currentColor" stroke-width="2" />
+                                        <circle cx="23" cy="13" r="9" fill="none" stroke="currentColor"
+                                            stroke-width="2" />
+                                        <text x="17" y="17" font-size="10" fill="currentColor"
+                                            font-weight="bold">V</text>
+                                        <line x1="35" y1="13" x2="46" y2="13" stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                    Вольтметр
+                                </button>
+
                             </div>
+
+
+                            <div class="tool-row">
+                                <span class="lib-label" style="margin:0;">Инструмент:</span>
+                                <button class="tbtn " data-tool="wire" id="t-wire"> Провод</button>
+                                <button class="tbtn" data-tool="move" id="t-move"> Перемещение</button>
+                                <button class="tbtn" data-tool="delete" id="t-del"> Удалить</button>
+                                <button class="tbtn demo-btn" id="btn-demo"> Демо-схема</button>
+                            </div>
+
+
+                            <div class="params-row" id="params-row" style="display:none">
+
+                                <div class="pg" id="pg-R" style="display:none">
+                                    <label>Сопротивление (Ом):</label>
+                                    <input type="range" id="sl-R" min="1" max="500" step="1" value="100">
+                                    <div class="pv" id="pv-R">100 Ом</div>
+                                </div>
+
+                                <div class="pg" id="pg-V" style="display:none">
+                                    <label>ЭДС источника (В):</label>
+                                    <input type="range" id="sl-V" min="1" max="24" step=".5" value="9">
+                                    <div class="pv" id="pv-V">9 В</div>
+                                </div>
+
+                                <div class="pg" id="pg-sw" style="display:none">
+                                    <label>Состояние ключа:</label>
+                                    <button class="sw-btn" id="sw-toggle"> Замкнут</button>
+                                </div>
+
+                                <div class="pg" id="pg-name" style="display:none">
+                                    <label>Выбранный элемент:</label>
+                                    <div class="pv" id="pv-name" style="color:#3a4a6b;font-size:.9rem">—</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="act-row">
+                                <button class="btn-start" id="btn-sim">▶ Запуск симуляции</button>
+                                <button class="btn-reset" id="btn-reset">↺ Сброс</button>
+                            </div>
+
+                        </div>
+
+                        <div class="sbar" id="sbar">
+                            Выберите элемент из библиотеки и кликните на холст для размещения
                         </div>
                     </div>
+                    
+                    <div class="res-card">
+                        <h2>Результаты: Ток и напряжение на элементах</h2>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Элемент</th>
+                                        <th>Параметр</th>
+                                        <th>Напряжение U (В)</th>
+                                        <th>Ток I (А)</th>
+                                        <th>Мощность P (Вт)</th>
+                                        <th>Состояние</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rtbody">
+                                    <tr>
+                                        <td colspan="7" class="nodata">Соберите схему и нажмите «Запуск симуляции»</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -158,6 +315,7 @@
             </div>
         </div>
     </div>
+    <script src="static/styles/IntIUR.js"></script>
 </body>
 
 </html>
