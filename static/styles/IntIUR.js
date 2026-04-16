@@ -36,9 +36,10 @@ const COLORS = {
 
 function getElementScale() {
   var width = SVG.clientWidth || 800;
-  if (width <= 480) return 0.55; // очень маленькие экраны
-  if (width <= 768) return 0.7; // планшеты и телефоны
-  return 1.0; // десктоп
+  if (width <= 400) return 0.5;
+  if (width <= 600) return 0.65;
+  if (width <= 768) return 0.75;
+  return 1.0;
 }
 
 function uid(p = "e") {
@@ -502,7 +503,6 @@ function onTermClick(e) {
     if (eid === S.wstart.eid && ti === S.wstart.ti) {
       S.wstart = null;
       WP.innerHTML = "";
-      setS("Клик на другой вывод для начала провода.");
       return;
     }
     const dup = S.wires.find(
@@ -527,10 +527,8 @@ function onTermClick(e) {
     S.wstart = null;
     WP.innerHTML = "";
     render();
-    setS("Провод добавлен. Кликните вывод для нового провода.");
   } else {
     S.wstart = { eid, ti, x: t.x, y: t.y };
-    setS("Кликните на другой вывод для завершения провода. Esc — отмена.");
   }
 }
 
@@ -629,12 +627,10 @@ SVG.addEventListener("click", (e) => {
     S.results = {};
     selEl(el.id);
     render();
-    setS(`${NAMES[S.placing]} добавлен. Ещё клик — ещё элемент. Esc — выход.`);
   }
   if (!S.placing && onCanvas && S.wstart) {
     S.wstart = null;
     WP.innerHTML = "";
-    setS("Проведение провода отменено.");
   }
 });
 
@@ -646,7 +642,6 @@ document.addEventListener("keydown", (e) => {
     document
       .querySelectorAll(".elib-btn")
       .forEach((b) => b.classList.remove("active"));
-    setS("Отмена. Выберите действие.");
   }
   if (e.key === "Delete" && S.sel) deleteEl(S.sel);
 });
@@ -659,13 +654,11 @@ document.querySelectorAll(".elib-btn").forEach((btn) => {
       .forEach((b) => b.classList.remove("active"));
     if (S.placing === t) {
       S.placing = null;
-      setS("Размещение отменено.");
     } else {
       S.placing = t;
       btn.classList.add("active");
       S.wstart = null;
       WP.innerHTML = "";
-      setS(`Кликните на холст для размещения: ${NAMES[t]}. Esc — отмена.`);
     }
   });
 });
@@ -683,12 +676,6 @@ document.querySelectorAll("[data-tool]").forEach((btn) => {
       .querySelectorAll(".elib-btn")
       .forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-    const msgs = {
-      wire: "Кликните на вывод элемента для начала провода",
-      move: "Перетащите элемент для перемещения",
-      delete: "Кликните на элемент или провод для удаления",
-    };
-    setS(msgs[S.tool] || "");
   });
 });
 
@@ -767,7 +754,6 @@ function deleteEl(id) {
   S.results = {};
   render();
   updateTable();
-  setS("Элемент удалён.");
 }
 
 function deleteWire(id) {
@@ -775,7 +761,6 @@ function deleteWire(id) {
   S.results = {};
   render();
   updateTable();
-  setS("Провод удалён.");
 }
 
 function gauss(A, b) {
@@ -808,7 +793,6 @@ function simulate() {
   S.results = {};
 
   if (!S.els.length) {
-    setS("Нет элементов.");
     updateTable();
     return;
   }
@@ -831,14 +815,12 @@ function simulate() {
     S.els.flatMap((el) => [0, 1].map((ti) => find(`${el.id}_${ti}`))),
   );
   if (nset.size < 2) {
-    setS("Схема не замкнута. Добавьте соединения.");
     updateTable();
     return;
   }
 
   const bat = S.els.find((e) => e.type === "battery");
   if (!bat) {
-    setS("Добавьте источник питания (батарею)!");
     updateTable();
     return;
   }
@@ -853,7 +835,6 @@ function simulate() {
   const bats = S.els.filter((e) => e.type === "battery");
   const sz = nc + bats.length;
   if (sz === 0) {
-    setS("Неполная схема.");
     updateTable();
     return;
   }
@@ -913,9 +894,6 @@ function simulate() {
 
   const sol = gauss(G, rhs);
   if (!sol) {
-    setS(
-      "Не удаётся решить — проверьте схему (возможно, есть разомкнутый участок).",
-    );
     updateTable();
     return;
   }
@@ -955,7 +933,6 @@ function simulate() {
 
   render();
   updateTable();
-  setS(" Симуляция завершена! Результаты отображены на схеме и в таблице.");
 }
 
 function updateTable() {
@@ -1026,7 +1003,6 @@ document.getElementById("btn-reset").addEventListener("click", () => {
   document.getElementById("params-row").style.display = "none";
   render();
   updateTable();
-  setS("Схема сброшена.");
 });
 
 document.getElementById("btn-demo").addEventListener("click", () => {
@@ -1092,7 +1068,6 @@ document.getElementById("btn-demo").addEventListener("click", () => {
 
   render();
   updateTable();
-  setS("Демо-схема загружена! Нажмите «▶ Запуск симуляции».");
 });
 
 setS("Выберите элемент из библиотеки и кликните на холст для размещения");
